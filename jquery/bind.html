@@ -13,6 +13,7 @@
 <div class="bind-c">
 </div>	
 <button class="btn">button</button>
+	<button class="btn-remove">remove click event</button>
 
 	
 	<script src="../cdn/js/jquery.js"></script>
@@ -26,6 +27,11 @@
 			
 			alert('button is clicked but for buttons which are added later with same class will not have click event. This is the disadvantage of bind event');
 			$('.btn').after('<button class=".btn">button2</button>');
+		})
+		
+		$('.btn-remove').unbind('click',function(){
+			
+			alert('unbind will remove the click event');
 		})
 			
 	});
