@@ -12,14 +12,19 @@
 <body>
 <div class="bind-c">
 </div>	
+<button class="btn">button</button>
 
 	
 	<script src="../cdn/js/jquery.js"></script>
 	<script>
-	$(document).ready(function(){
+	$(function(){
 		$('.bind-c').bind('click',function(){
 			
 			alert('div is clicked');
+		})
+		$('.btn').bind('click',function(){
+			
+			alert('button is clicked');
 		})
 			
 	});
