@@ -1,12 +1,28 @@
 <html>
 	<head>
 	
+		<style>
+		.bind-c{
+			width:200px;
+			height: 200px;
+			background-color: rebeccapurple;
+		}
+		</style>
 	</head>
 <body>
 <div class="bind-c">
 </div>	
 
 	
-	<script src="cdn/jquery"></script>
+	<script src="../cdn/js/jquery.js"></script>
+	<script>
+	$(document).ready(function(){
+		$('.bind-c').bind('click',function(){
+			
+			alert('div is clicked');
+		})
+			
+	});
+	</script>
 </body>
 </html>
