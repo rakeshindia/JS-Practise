@@ -1,0 +1,48 @@
+<html>
+	<head>
+	
+		<style>
+		
+		</style>
+	</head>
+<body>
+
+	
+	<div id="data">
+	
+</div>
+	<button id="incremet">increment</button>
+	<button id="decrement">decrement</button>
+	
+	<script>
+	var M = (function(){ 
+var x = 0;
+
+function start(){
+	document.getElementById("data").innerHTML=x;
+	document.getElementById("incremet").addEventListener('click',inc);
+	document.getElementById("decrement").addEventListener('click',dec);	
+		
+}
+		function inc(){
+			x++;
+			document.getElementById("data").innerHTML=x;
+
+		}
+		function dec(){
+			x--;
+			document.getElementById("data").innerHTML=x;
+		}
+var k=new start()		
+//return{
+//inc:inc,
+//dec:dec
+//}
+
+
+})();
+var m=new M;
+		
+	</script>
+</body>
+</html>
