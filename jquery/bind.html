@@ -24,7 +24,8 @@
 		})
 		$('.btn').bind('click',function(){
 			
-			alert('button is clicked');
+			alert('button is clicked but for buttons which are added later with same class will not have click event');
+			$('.btn').after('<button class=".btn">button2</button>');
 		})
 			
 	});
