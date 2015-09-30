@@ -1,0 +1,2 @@
+# JS-Practise
+JavaScript examples
