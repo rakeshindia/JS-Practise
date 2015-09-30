@@ -24,7 +24,7 @@
 		})
 		$('.btn').bind('click',function(){
 			
-			alert('button is clicked but for buttons which are added later with same class will not have click event');
+			alert('button is clicked but for buttons which are added later with same class will not have click event. This is the disadvantage of bind event');
 			$('.btn').after('<button class=".btn">button2</button>');
 		})
 			
