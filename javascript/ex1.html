@@ -1,0 +1,84 @@
+<html>
+	<head>
+	<style>
+	.image-prac{
+		width:200px;
+		height: 200px;
+		padding: 5px;
+		border:1px solid green
+	}
+	</style>
+	</head>
+<body>
+<div class="parent">
+	<div id="child-1">
+	Hello I am child
+		
+		<p class="para-1">
+	this is para
+	</p>
+	</div>
+	
+	<div id="child-2">
+	hello I am child 2
+		<p class="para-2">
+		hello para2
+		</p>
+		<p class="para-3">
+		hello para3
+		</p>
+		<img src="" alt="image"/ class="image-prac">
+		<img src="" alt="image"/ class="image-prac">
+	</div>
+</div>
+<div class="parent">
+</div>
+	
+<div id="sameid">
+hello  i am same id 1 text	
+</div>
+<div id="sameid">
+hello  i am same id 2 text	
+</div>
+	<script>
+		
+	var x=document.getElementById("child-1");
+		console.log("child-1 fetching getelementbyid");
+		console.log(x);
+		
+		
+	var y=x.getElementsByClassName("para-1");
+		console.log("child-1 of para-1 fetching getelementby class will return array");
+		console.log(y)
+		
+		
+	var z=document.getElementById("child-2")
+		console.log("child-2 fetching getelementbyid");
+		console.log(z)
+		console.log("child-2 paras fetching getelementsby tag as array");
+		
+		
+	var m=z.getElementsByTagName("p");
+		console.log(m);
+		console.log("child-2 paras fetching getelementsby class as array");
+		
+		
+	var k=z.getElementsByClassName("para-3");
+		console.log(k);
+		
+	var img=document.images.length;
+		console.log("images lenght is"+" : "+img);
+		
+		
+    var sameclass=document.getElementsByClassName("parent");
+		console.log("same class will give result"+sameclass);
+		
+		
+	var sameid_content=document.getElementById("sameid");
+		console.log("same id's will give result"+sameid_content);
+		console.log("unique id child-2 will give result "+document.getElementById("child-2"));
+		
+	</script>
+</body>
+</html>
+
