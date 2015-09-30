@@ -2,17 +2,66 @@
 	<head>
 	
 		<style>
-		
+			.root{
+				width:300px;
+			height: 300px;
+			background-color: rosybrown;
+			}
+		.bind-c{
+			width:200px;
+			height: 200px;
+			background-color: #fff;
+		}
+			.mouse{
+				width:200px;
+			height: 200px;
+			background-color: red;
+			}
 		</style>
 	</head>
 <body>
+<div class="root">
+	<ul class="bind-c">
+		<li><a href="#">anchor</a></li>
+		<li><a href="#">anchor</a></li>
+		<li><a href="#">anchor</a></li>
+		<li><a href="#">anchor</a></li>
+		<li><a href="#">anchor</a></li>
+</div>
+	
+	
+	<div class="mouse">
+	</div>
+	
+<button class="btn">button</button>
+	<button class="btn-remove">remove click event</button>
 
+	
+	
+	
+	
 	
 	<script src="../cdn/js/jquery.js"></script>
 	<script>
 	$(function(){
-		
+		$('ul.bind-c li a').live('click',function(){
 			
+			alert('anchor is clicked');
+		})
+		
+		
+		$('.btn-remove').off('click',function(){
+			
+			alert('off will remove the click event');
+		})
+			
+		
+		
+		$('div.mouse').live('mouseover', function(){
+			alert('mouse over');
+		});
+// this new appended div WILL HAVE mouseover event handler registered
+$('<div/>').appendTo('div.mouse:last');
 	});
 	</script>
 </body>

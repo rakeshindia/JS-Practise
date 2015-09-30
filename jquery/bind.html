@@ -2,6 +2,11 @@
 	<head>
 	
 		<style>
+			.root{
+				width:300px;
+			height: 300px;
+			background-color: rosybrown;
+			}
 		.bind-c{
 			width:200px;
 			height: 200px;
@@ -10,8 +15,17 @@
 		</style>
 	</head>
 <body>
-<div class="bind-c">
-</div>	
+<div class="root">
+	<ul class="bind-c">
+		<li><a href="#">anchor</a></li>
+		<li><a href="#">anchor</a></li>
+		<li><a href="#">anchor</a></li>
+		<li><a href="#">anchor</a></li>
+		<li><a href="#">anchor</a></li>
+</div>
+	
+	
+	
 <button class="btn">button</button>
 	<button class="btn-remove">remove click event</button>
 
@@ -19,9 +33,9 @@
 	<script src="../cdn/js/jquery.js"></script>
 	<script>
 	$(function(){
-		$('.bind-c').bind('click',function(){
+		$('ul.bind-c li a').bind('click',function(){
 			
-			alert('div is clicked');
+			alert('anchor is clicked');
 		})
 		$('.btn').bind('click',function(){
 			
