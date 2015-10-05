@@ -18,7 +18,10 @@ function equal()
 	document.getElementById("screen").value=a;
 }
 function clearOne(){
-		
+var strWord = document.getElementById("screen").value;
+
+    var z=strWord.slice(0,- 1);
+	document.getElementById("screen").value=z;
 }
 </script>
 </head>
@@ -47,7 +50,7 @@ function clearOne(){
 	<input type="button"  value="=" onclick='equal("")'>
 	<input type="button"  value="c" onclick='clearData("")'>
 	
-	<input type="button"  value="<" onclick='clearOne()'>
+	<input type="button"  value="<x" onclick='clearOne()'>
 </div>
 
 </body>
