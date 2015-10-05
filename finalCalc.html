@@ -1,0 +1,55 @@
+<html>
+
+<head>
+
+<script>
+function clearData(val)
+{
+
+	document.getElementById("screen").value=val;
+}
+function fetch(val)
+{
+	document.getElementById("screen").value+=val;
+}
+function equal() 
+{ 
+	var a=eval(document.getElementById("screen").value);
+	document.getElementById("screen").value=a;
+}
+function clearOne(){
+		
+}
+</script>
+</head>
+<body>
+
+<div class="box">
+
+	<input type="text" readonly  id="screen">
+	
+	<input type="button"  value="1" onclick='fetch("1")'>
+	<input type="button"  value="2" onclick='fetch("2")'>
+	<input type="button"  value="3" onclick='fetch("3")'>
+	<input type="button"  value="4" onclick='fetch("4")'>
+	<input type="button"  value="5" onclick='fetch("5")'>
+	<input type="button"  value="6" onclick='fetch("6")'>
+	<input type="button"  value="7" onclick='fetch("7")'>
+	<input type="button"  value="8" onclick='fetch("8")'>
+	<input type="button"  value="9" onclick='fetch("9")'>
+	<input type="button"  value="0" onclick='fetch("0")'>
+	
+	<input type="button"  value="+" onclick='fetch("+")'>
+	<input type="button"  value="-" onclick='fetch("-")'>
+	<input type="button"  value="/" onclick='fetch("/")'>
+	<input type="button"  value="*" onclick='fetch("*")'>
+	<input type="button"  value="." onclick='fetch(".")'>
+	<input type="button"  value="=" onclick='equal("")'>
+	<input type="button"  value="c" onclick='clearData("")'>
+	
+	<input type="button"  value="<" onclick='clearOne()'>
+</div>
+
+</body>
+
+</html>

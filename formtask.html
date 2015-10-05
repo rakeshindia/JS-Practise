@@ -1,0 +1,80 @@
+<html>
+	<head>
+	
+		<style>
+		.panel{
+			width:500px;
+			border:1px solid #ccc;
+		}
+		
+		</style>
+	</head>
+<body>
+	
+	<div id="summarylist"></div>
+ 
+	
+		
+		<div class="panel">
+			<div class="name-panel">
+				<label class="name left" >Name :</label>
+				<input type="text" name="fname" class="name-text right" id="fname"/>
+			</div>
+			<div class="password-panel">
+				<label class="password left">Password :</label>
+				<input type="password" class="password-text right" name="pass" id="pass"/>
+			</div>
+			<div class="email-panel">
+				<label class="email left">Email :</label>
+				<input type="email" class="email-text right" name="email" id="email"/>
+			</div>
+			<div class="buttons-panel">
+				<input type="submit" class="submit left" value="submit" onSubmit="return dataValidation()"/>
+				<input type="reset" class="reset right"/>
+			</div>
+		</div>
+	
+
+	<script>
+     	//var sl=document.getElementByID("summarylist").style.borderColor="red";
+		//document.getElementsByClassName("left").style.cssFloat= "left";
+		//document.getElementsByClassName("right").style.cssFloat= "right";
+		
+	
+		//var x = document.forms["form1"]["fname"].value;
+		//var y= document.forms["form1"]["pass"].value;
+		var x=document.getElementById("fname")
+		var y=document.getElementById("pass")
+		var z=document.getElementById("email")
+		 function dataValidation()
+      {
+      
+         if( x.value== "" )
+         {
+            alert( "Please provide your name!" );
+			 x.style.borderColor="red";
+			 x.focus() ;
+            return false;
+         }
+         
+         if( y.value == "" )
+         {
+            alert( "Please provide your Email!" );
+            y.focus() ;
+            return false;
+         }
+         
+         if( z.value == "" )
+         {
+            alert( "Please provide a email " );
+           z.focus() ;
+            return false;
+         }
+		   
+         
+        
+         return true;
+      }
+	</script>
+</body>
+</html>
