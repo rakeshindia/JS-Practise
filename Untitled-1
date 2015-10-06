@@ -1,0 +1,2 @@
+
+            $('.ServiceClass').parents().parents().children().find('div.pdfMasterContent').addClass("theme-border-1");
