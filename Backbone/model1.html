@@ -1,0 +1,35 @@
+<html>
+	<head>
+	
+		<style>
+		
+		</style>
+	</head>
+<body>
+
+	
+	<script src="../cdn/js/underscore.js"></script>
+	<script src="../cdn/js/jquery.js"></script>
+	<script src="../cdn/js/backbone.js"></script>
+	<script>
+	
+	var StudentModel = Backbone.Model.extend({});
+    var obj=new StudentModel({
+	'name':'rakesh',
+	'age':20
+	});
+		console.log(obj);
+		console.log(obj.name);//you cant access directly in backbonejs
+		console.log(obj.get('name'));
+		console.log(obj.get('age'));
+		console.log(obj.set('age',22));
+		console.log(obj.get('age'));
+		
+		
+		//console.log(obj.save('name','jella')); //new version backbonejs uses save
+		
+		//console.log(obj.get('name'));
+	</script>
+	
+</body>
+</html>
