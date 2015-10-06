@@ -1,58 +1,90 @@
 <html>
 
 <head>
+    <style>
+        .box {
+            width: 200px;
+            background-color: gainsboro;
+            padding: 20px;
+            border-radius: 10px;
+        }
 
-<script>
-function clearData(val)
-{
+        #screen {
+            background-color: azure;
+        }
 
-	document.getElementById("screen").value=val;
-}
-function fetch(val)
-{
-	document.getElementById("screen").value+=val;
-}
-function equal() 
-{ 
-	var a=eval(document.getElementById("screen").value);
-	document.getElementById("screen").value=a;
-}
-function clearOne(){
-var strWord = document.getElementById("screen").value;
+        input[type="button"] {
+            font-family: sans-serif;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            background-color: gray;
+            color: #fff;
+        }
 
-    var z=strWord.slice(0,- 1);
-	document.getElementById("screen").value=z;
-}
-</script>
+        .panel1, .panel2, panel3, .panel4 {
+            padding: 10px 0;
+        }
+    </style>
+
+    <script>
+        function clearData(val) {
+
+            document.getElementById("screen").value = val;
+        }
+        function fetch(val) {
+            document.getElementById("screen").value += val;
+        }
+        function equal() {
+            var a = eval(document.getElementById("screen").value);
+            document.getElementById("screen").value = a;
+        }
+        function clearOne() {
+            var strWord = document.getElementById("screen").value;
+
+            var z = strWord.slice(0, -1);
+            document.getElementById("screen").value = z;
+        }
+    </script>
 </head>
 <body>
 
-<div class="box">
+    <div class="box">
+        <div class="output">
+            <input type="text" readonly id="screen">
+        </div>
+        <div class="panel1">
+            <input type="button" value="1" onclick='fetch("1")'>
+            <input type="button" value="2" onclick='fetch("2")'>
+            <input type="button" value="3" onclick='fetch("3")'>
+            <input type="button" value="4" onclick='fetch("4")'>
+            <input type="button" value="5" onclick='fetch("5")'>
+        </div>
+        <div class="panel2">
 
-	<input type="text" readonly  id="screen">
-	
-	<input type="button"  value="1" onclick='fetch("1")'>
-	<input type="button"  value="2" onclick='fetch("2")'>
-	<input type="button"  value="3" onclick='fetch("3")'>
-	<input type="button"  value="4" onclick='fetch("4")'>
-	<input type="button"  value="5" onclick='fetch("5")'>
-	<input type="button"  value="6" onclick='fetch("6")'>
-	<input type="button"  value="7" onclick='fetch("7")'>
-	<input type="button"  value="8" onclick='fetch("8")'>
-	<input type="button"  value="9" onclick='fetch("9")'>
-	<input type="button"  value="0" onclick='fetch("0")'>
-	
-	<input type="button"  value="+" onclick='fetch("+")'>
-	<input type="button"  value="-" onclick='fetch("-")'>
-	<input type="button"  value="/" onclick='fetch("/")'>
-	<input type="button"  value="*" onclick='fetch("*")'>
-	<input type="button"  value="." onclick='fetch(".")'>
-	<input type="button"  value="=" onclick='equal("")'>
-	<input type="button"  value="c" onclick='clearData("")'>
-	
-	<input type="button"  value="<x" onclick='clearOne()'>
-</div>
+            <input type="button" value="6" onclick='fetch("6")'>
+            <input type="button" value="7" onclick='fetch("7")'>
+            <input type="button" value="8" onclick='fetch("8")'>
+            <input type="button" value="9" onclick='fetch("9")'>
+            <input type="button" value="0" onclick='fetch("0")'>
+        </div>
+        <div class="panel3">
+
+            <input type="button" value="c" onclick='clearData("")'>
+
+            <input type="button" value="<x" onclick='clearOne()'>
+            <input type="button" value="+" onclick='fetch("+")'>
+            <input type="button" value="-" onclick='fetch("-")'>
+            <input type="button" value="/" onclick='fetch("/")'>
+        </div>
+
+        <div class="panel4">
+
+            <input type="button" value="*" onclick='fetch("*")'>
+            <input type="button" value="." onclick='fetch(".")'>
+            <input type="button" value="=" onclick='equal("")'>
+        </div>
+
+    </div>
 
 </body>
-
 </html>

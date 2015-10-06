@@ -1,76 +1,113 @@
 <html>
-	<head>
-	
-		<style>
-		.today{
-			color:green;
-		}
-			ul.days{
-				list-style: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li{
-				display: inline-block;
-			}
-		</style>
-	</head>
-<body>
-	<ul class="days">
-		<li id="sun">Sun</li>
-		<li id="mon">Mon</li>
-		<li id="tue">Tue</li>
-			<li id="wed">Wed</li>
-		<li id="thu">Thu</li>
-		<li id="fri">Fri</li>
-		<li id="sat">Sat</li>
-	</ul>
-	<div id="digital">
-		
-	</div>
-<script>
-(function (){ 
-		
-	function startTime() {
-	var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-	h = checkTime(h);
-    m = checkTime(m);
-    s = checkTime(s);
-    var n = today.getDay();
-		console.log(n);
-		switch(n){
-			case 0:document.getElementById("sun").style.color="red";
-				break;
-			case 1:document.getElementById("mon").style.color="tomato";
-				break;
-			case 2:document.getElementById("tue").style.color="green";
-				break;
-			case 3:document.getElementById("wed").style.color="blue";
-				break;
-			case 4:document.getElementById("thu").style.color="brown";
-				break;
-			case 5:document.getElementById("fri").style.color="gray";
-				break;
-			default:document.getElementById("sun").style.color="orange";
-				break;
-		}
-	if(h<12)
-		var ampm='am';
-	else
-		var ampm="pm";
-	document.getElementById('digital').innerHTML =h + ":" + m + ":" + s+":"+ampm;
-    var t = setTimeout(startTime, 500);
-	}
-	function checkTime(i) {
-	if (i < 10) {i = "0" + i}; 
-    return i;
-	}
-	startTime();		
-})();
+<head>
 
-	</script>
+    <style>
+        .today {
+            color: green;
+        }
+
+        ul.days {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            display: inline-block;
+            color: gray;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .cal-body {
+            width: 450px;
+            background-color: dimgray;
+            padding: 10px;
+        }
+
+        .digital-cal {
+            background-color: black;
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+            margin: 0 auto;
+            color: white;
+            border-radius: 5px;
+        }
+
+        #digital {
+            margin: 5px 0;
+            text-align: center;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cal-body">
+        <div class="digital-cal">
+            <ul class="days">
+                <li id="sun">Sun</li>
+                <li id="mon">Mon</li>
+                <li id="tue">Tue</li>
+                <li id="wed">Wed</li>
+                <li id="thu">Thu</li>
+                <li id="fri">Fri</li>
+                <li id="sat">Sat</li>
+            </ul>
+            <div id="digital">
+
+
+                <div id="ampm"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                var n = today.getDay();
+                console.log(n);
+                switch (n) {
+                    case 0: document.getElementById("sun").style.color = "white";
+                        break;
+                    case 1: document.getElementById("mon").style.color = "white";
+                        break;
+                    case 2: document.getElementById("tue").style.color = "white";
+                        break;
+                    case 3: document.getElementById("wed").style.color = "white";
+                        break;
+                    case 4: document.getElementById("thu").style.color = "white";
+                        break;
+                    case 5: document.getElementById("fri").style.color = "white";
+                        break;
+                    default: document.getElementById("sun").style.color = "white";
+                        break;
+                }
+                if (h < 12)
+                    var ampm = 'am';
+                else
+                    var ampm = "pm";
+
+                if (h > 12)
+                    h = h - 12;
+                if (h < 10) {
+                    { h = "0" + h };
+                }
+                document.getElementById('digital').innerHTML = h + ":" + m + ":" + s + " " + ampm;
+                var t = setTimeout(startTime, 1000);
+            }
+            function checkTime(i) {
+                if (i < 10) { i = "0" + i };
+                return i;
+            }
+            startTime();
+        })();
+    </script>
 </body>
 </html>
