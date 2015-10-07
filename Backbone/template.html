@@ -13,10 +13,20 @@
 					
 	</div>
 	<script id="personTemplate" type="text/template">
-		<div class="name">Name is:<input type="text" value="<%= name %>" class="nameInput"/></div> 
-		<div class="age">Age is :<input type="text" value="<%= age %>" class="ageInput"/></div>
-		<button class="save" name="save">Save</button>
-		<button class="edit" name="edit">Edit</button>
+		<table>
+			<tr>
+				 <td> Name </td>
+				 <td><input type="text" value="<%= name %>" class="nameInput disableInput" disabled/></td>
+			 </tr>
+			<tr>
+				<td>Age </td>
+				<td><input type="text" value="<%= age %>" class="ageInput disableInput" disabled/></td>
+			 </tr>
+			<tr>
+				<td><button class="edit" name="edit">Edit</button> </td>
+				<td><button class="cancel" name="cancel">Cancel</button> </td>
+			</tr>
+		</table>
 	</script>
 	
 	<script src="../cdn/js/underscore.js"></script>
@@ -36,16 +46,13 @@ var PersonView = Backbone.View.extend({
 	
 	template: _.template( $('#personTemplate').html()),
 	events: {
-	 'click .save' : 'saveData'
+	 'click .edit' : 'editData'
 
 	},
 	
-	saveData:function(){
-		var newName =  this.model.get('name');
-		alert(newName);
-		
-		this.model.set('name', newName);
-		
+	editData:function(){
+		$('.disableInput').prop("disabled", false); 
+		$('.edit').html("save");
 	},
 
 	initialize: function(){
