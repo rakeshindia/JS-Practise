@@ -49,15 +49,13 @@ var PersonView = Backbone.View.extend({
 	 'click .edit' : 'editData'
 
 	},
-	
-	editData:function(){
-		$('.disableInput').prop("disabled", false); 
-		$('.edit').html("save");
-	},
-
 	initialize: function(){
 		this.render();
 		
+	},
+	editData:function(){
+		$('.disableInput').prop("disabled", false); 
+		$('.edit').html("save");
 	},
   
 	render: function(){
