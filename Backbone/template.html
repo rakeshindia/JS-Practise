@@ -1,0 +1,70 @@
+<html>
+	<head>
+	
+		<style>
+		.left{
+			float: left;
+		}
+		</style>
+	</head>
+<body>
+	<div class="panel">
+		
+					
+	</div>
+	<script id="personTemplate" type="text/template">
+		<div class="name">Name is:<input type="text" value="<%= name %>" class="nameInput"/></div> 
+		<div class="age">Age is :<input type="text" value="<%= age %>" class="ageInput"/></div>
+		<button class="save" name="save">Save</button>
+		<button class="edit" name="edit">Edit</button>
+	</script>
+	
+	<script src="../cdn/js/underscore.js"></script>
+	<script src="../cdn/js/jquery.js"></script>
+	<script src="../cdn/js/backbone.js"></script>
+	<script>
+	
+var Person = Backbone.Model.extend({
+	defaults: {
+		name: 'rakesh',
+		age:'26',
+		occupation: 'UI'
+	} 	
+});
+
+var PersonView = Backbone.View.extend({
+	
+	template: _.template( $('#personTemplate').html()),
+	events: {
+	 'click .save' : 'saveData'
+
+	},
+	
+	saveData:function(){
+		var newName =  this.model.get('name');
+		alert(newName);
+		
+		this.model.set('name', newName);
+		
+	},
+
+	initialize: function(){
+		this.render();
+		
+	},
+  
+	render: function(){
+		this.$el.html( this.template(this.model.toJSON()));
+		return this;
+	}
+});
+		
+ var person = new Person();  // a person object created...
+var personView = new PersonView({ model: person });
+
+$('.panel').html(personView.el);
+		
+	</script>
+	
+</body>
+</html>

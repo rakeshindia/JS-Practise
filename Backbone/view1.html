@@ -1,0 +1,51 @@
+<html>
+	<head>
+	
+		<style>
+		.left{
+			float: left;
+		}
+		</style>
+	</head>
+<body>
+	<div class="panel">
+		
+					
+	</div>
+	
+	<script src="../cdn/js/underscore.js"></script>
+	<script src="../cdn/js/jquery.js"></script>
+	<script src="../cdn/js/backbone.js"></script>
+	<script>
+	
+	var StudentModel = Backbone.Model.extend({});
+    var objModel=new StudentModel({
+	'name':'rakesh',
+	'age':26
+	});
+	
+	var StudentView=Backbone.View.extend({
+		tagName:'div',
+		className:'view1',
+		render:function(){
+			debugger;
+		console.log(this);
+			debugger;
+		this.$el.append(this.model.get('name'));
+		this.$el.append(this.model.get('age'));
+		return this;
+		
+	}
+	
+	});
+	var objView=new StudentView({model:objModel});
+		console.log(objView);
+		console.log(objView.el);
+		console.log(objView.$el);
+		//console.log(objView.render().el);
+		$('.panel').prepend(objView.render().el);
+		
+	</script>
+	
+</body>
+</html>
