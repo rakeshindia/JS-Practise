@@ -1,75 +1,116 @@
 <html>
-	<head>
-	
-		<style>
-		.left{
-			float: left;
-		}
-		</style>
-	</head>
+<head>
+
+    <style>
+        .left {
+            float: left;
+        }
+    </style>
+</head>
 <body>
-	<div class="panel">
-		
-					
-	</div>
-	<script id="personTemplate" type="text/template">
-		<table>
-			<tr>
-				 <td> Name </td>
-				 <td><input type="text" value="<%= name %>" class="nameInput disableInput" disabled/></td>
-			 </tr>
-			<tr>
-				<td>Age </td>
-				<td><input type="text" value="<%= age %>" class="ageInput disableInput" disabled/></td>
-			 </tr>
-			<tr>
-				<td><button class="edit" name="edit">Edit</button> </td>
-				<td><button class="cancel" name="cancel">Cancel</button> </td>
-			</tr>
-		</table>
-	</script>
-	
-	<script src="../cdn/js/underscore.js"></script>
-	<script src="../cdn/js/jquery.js"></script>
-	<script src="../cdn/js/backbone.js"></script>
-	<script>
-	
-var Person = Backbone.Model.extend({
-	defaults: {
-		name: 'rakesh',
-		age:'26',
-		occupation: 'UI'
-	} 	
-});
+    <div class="panel">
+    </div>
+    <script id="editTemplate" type="text/template">
+        <table>
+            <tr>
+                <td>Name </td>
+                <td>
+                    <label class="nameInput"><%= name %></label></td>
+            </tr>
+            <tr>
+                <td>Age </td>
+                <td>
+                    <label class="nameInput"><%=age %></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="edit" name="edit">Edit</button>
+                </td>
+                <td>
+                    <button class="cancel" name="cancel">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </script>
+    <script id="saveTemplate" type="text/template">
+        <table>
+            <tr>
+                <td>Name </td>
+                <td>
+                    <input type="text" value="<%= name %>" class="nameInput" /></td>
+            </tr>
+            <tr>
+                <td>Age </td>
+                <td>
+                    <input type="text" value="<%= age %>" class="ageInput" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="Save" name="save">Save</button>
+                </td>
+                <td>
+                    <button class="cancel" name="cancel">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </script>
 
-var PersonView = Backbone.View.extend({
-	
-	template: _.template( $('#personTemplate').html()),
-	events: {
-	 'click .edit' : 'editData'
+    <script src="../cdn/js/underscore.js"></script>
+    <script src="../cdn/js/jquery.js"></script>
+    <script src="../cdn/js/backbone.js"></script>
+    <script>
 
-	},
-	initialize: function(){
-		this.render();
-		
-	},
-	editData:function(){
-		$('.disableInput').prop("disabled", false); 
-		$('.edit').html("save");
-	},
-  
-	render: function(){
-		this.$el.html( this.template(this.model.toJSON()));
-		return this;
-	}
-});
-		
- var person = new Person();  // a person object created...
-var personView = new PersonView({ model: person });
+        var Person = Backbone.Model.extend({
+            defaults: {
+                name: 'rakesh',
+                age: '26',
+                occupation: 'UI'
+            }
+        });
 
-$('.panel').html(personView.el);
-		
-	</script>
-	
+        var PersonView = Backbone.View.extend({
+
+            template: _.template($('#editTemplate').html()),
+            template2: _.template($('#saveTemplate').html()),
+            events: {
+                'click .edit': 'editData',
+                'click .Save': 'saveData',
+                'click .cancel': 'cancelData'
+
+            },
+            initialize: function () {
+                this.render();
+
+            },
+            editData: function () {
+                this.$el.html(this.template2(this.model.toJSON()));
+            },
+            saveData: function () {
+
+                var name = $('.nameInput').val();
+                var age = $('.ageInput').val();
+                this.model.set('name', name);
+                this.model.set('age', age);
+
+                this.$el.html(this.template(this.model.toJSON()));
+
+            },
+            cancelData: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+
+            },
+            render: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+            }
+        });
+
+        var person = new Person();
+        var personView = new PersonView({ model: person });
+
+        $('.panel').html(personView.el);
+
+    </script>
+
 </body>
 </html>
