@@ -20,7 +20,7 @@
             <tr>
                 <td>Age </td>
                 <td>
-                    <label class="nameInput"><%=age %></label>
+                    <label class="nameAge"><%=age %></label>
                 </td>
             </tr>
             <tr>
@@ -101,7 +101,8 @@
 
             },
             render: function () {
-                this.$el.html(this.template(this.model.toJSON()));
+				var self=this;
+                self.$el.html(self.template(this.model.toJSON()));
             }
         });
 
