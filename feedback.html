@@ -1,0 +1,108 @@
+<html>
+<head>
+
+    <style>
+        .left {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+    </div>
+ 
+        <table>
+            <tr>
+                <td>Name </td>
+                <td>
+                    <input type="text" class="nameInput"></input></td>
+            </tr>
+            <tr>
+                <td>Age </td>
+                <td>
+                    
+					<input type="text" class="ageInput"></input></td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="save" name="edit">Save</button>
+                </td>
+                <td>
+                    <button class="cancel" name="cancel">Cancel</button>
+                </td>
+            </tr>
+        </table>
+   
+	 <script id="savedDataTemplate" type="text/template">
+       <table>
+            <tr>
+                <td>Name </td>
+                <td>
+                    <label class="nameInput"><%= name %></label></td>
+            </tr>
+            <tr>
+                <td>Age </td>
+                <td>
+                    
+                </td>
+            </tr>
+           
+        </table>
+    </script>
+ 
+
+    <script src="../cdn/js/underscore.js"></script>
+    <script src="../cdn/js/jquery.js"></script>
+    <script src="../cdn/js/backbone.js"></script>
+    <script>
+
+        var Person = Backbone.Model.extend({
+            
+        });
+
+        var PersonView = Backbone.View.extend({
+
+           
+			template: _.template($('#savedDataTemplate').html()),
+           
+            events: {
+               
+                'click .Save': 'saveData',
+                'click .cancel': 'cancelData'
+
+            },
+            initialize: function () {
+                this.render();
+
+            },
+           
+            saveData: function () {
+
+                var name = $('.nameInput').val();
+                var age = $('.ageInput').val();
+//                this.model.set('name', name));
+//                this.model.set('age', age);
+
+              //this.$el.html(this.template(this.model.toJSON()));
+
+            },
+            cancelData: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+
+            },
+            render: function () {
+				var self=this;
+                self.$el.html(self.template(this.model.toJSON()));
+            }
+        });
+
+        var person = new Person();
+        var personView = new PersonView({ model: person });
+
+        $('.panel').html(personView.el);
+
+    </script>
+
+</body>
+</html>

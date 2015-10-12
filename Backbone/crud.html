@@ -1,0 +1,81 @@
+<html>
+<head>
+
+    <style>
+        .left {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+		<div class="buttons">
+			<button name="add" class="add">Add</button>
+			<button name="delete" class="delete">Delete</button>
+		</div>
+		<div class="model-values">
+		</div>
+    </div>
+    <script id="addTemplate" type="text/template">
+		<table>
+			<tr>
+				<td><%= sno %></td>
+				<td><input type="checkbox" class="check"/></td>
+				<td><%= taskTitle %></td>
+				<td><button class="viewData">View</button></td>
+			</tr>
+		</table>
+                
+    </script>
+    <script id="viewTemplate" type="text/template">
+	
+    </script>
+
+    <script src="../cdn/js/underscore.js"></script>
+    <script src="../cdn/js/jquery.js"></script>
+    <script src="../cdn/js/backbone.js"></script>
+    <script>
+		 var taskModel = Backbone.Model.extend({
+            defaults: {
+                sno: 1,
+                taskTitle: 'backbonejs'
+                
+            }
+        });
+		
+        var taskView = Backbone.View.extend({
+
+            template: _.template($('#addTemplate').html()),
+            
+           
+            initialize: function () {
+                this.render();
+				
+            },
+           events:{
+			   'click .add':'addModel', 
+			   'click .delete':'deleteModel' 
+			   
+		   },
+			
+			addModel:function() {
+				debugger;
+				alert();
+			    
+			},
+			deleteModel:function(){
+			},
+            render: function () {
+				this.$el.html(this.template(this.model.toJSON()));
+            }
+        });
+
+        var taskModelObj = new taskModel();
+        var taskViewObj = new taskView({ model: taskModelObj });
+
+        $('.model-values').html(taskViewObj.el);
+
+    </script>
+
+</body>
+</html>

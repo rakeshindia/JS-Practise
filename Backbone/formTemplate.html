@@ -1,0 +1,110 @@
+<html>
+<head>
+
+    <style>
+        .left {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+    </div>
+    <script id="editTemplate" type="text/template">
+                <div class="name-cont">
+                	<label>Name</label> 
+                
+                    <label class="nameInput"><%= name %></label>
+				</div>
+				<div class="age-con">
+            		<label>Age </label>
+                    <label class="nameAge"><%=age %></label>
+				</div>
+                <div class="but-cont">
+                    <button class="edit" name="edit">Edit</button>
+               		<button class="delete" name="delete">Delete</button>
+                    <button class="cancel" name="cancel">Cancel</button>
+                </div>
+    </script>
+    <script id="saveTemplate" type="text/template">
+	<form name="saveTempForm" action="">
+       <div class="name-cont">
+                	<label>Name</label> 
+                    <input type="text" value="<%= name %>" class="nameInput" />
+				</div>
+				<div class="age-con">
+				<label>Age </label>
+                    <input type="text" value="<%= age %>" class="ageInput" />
+              </div>
+			   <div class="but-cont">
+                    <button class="Save" name="save">Save</button>
+              
+                    <button class="cancel" name="cancel">Cancel</button>
+               </div>
+	 </form>
+    </script>
+
+    <script src="../cdn/js/underscore.js"></script>
+    <script src="../cdn/js/jquery.js"></script>
+    <script src="../cdn/js/backbone.js"></script>
+    <script>
+
+        var Person = Backbone.Model.extend({
+            defaults: {
+                name: 'rakesh',
+                age: '26',
+                occupation: 'UI'
+            }
+        });
+
+        var PersonView = Backbone.View.extend({
+
+            template: _.template($('#editTemplate').html()),
+            template2: _.template($('#saveTemplate').html()),
+            events: {
+                'click .edit': 'editData',
+                'click .Save': 'saveData',
+                'click .cancel': 'cancelData',
+				'click .delete':'deleteData'
+
+            },
+            initialize: function () {
+                this.render();
+				this.model.on('destroy', this.remove, this);
+
+            },
+            editData: function () {
+                this.$el.html(this.template2(this.model.toJSON()));
+            },
+            saveData: function () {
+				event.preventDefault();
+                var name = $('.nameInput').val();
+                var age = $('.ageInput').val();
+                this.model.set('name', name);
+                this.model.set('age', age);
+
+                this.$el.html(this.template(this.model.toJSON()));
+
+            },
+			deleteData:function(){
+				this.model.destroy();
+			},
+            cancelData: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+
+            },
+            render: function () {
+				var self=this;
+                self.$el.html(self.template(this.model.toJSON()));
+            }
+        });
+
+        var person = new Person();
+        var personView = new PersonView({ model: person });
+
+        $('.panel').html(personView.el);
+
+    </script>
+
+</body>
+</html>

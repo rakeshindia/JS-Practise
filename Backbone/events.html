@@ -1,0 +1,156 @@
+<html>
+<head>
+
+    <style>
+		
+		.eventHeader{
+			text-align: center;
+		}
+		.eventsDiv{
+			
+			padding: 10px;
+			width:20%;
+			min-height: 120px;
+		}
+       .eventNameLabel,.eventDateLabel{
+		   cursor:pointer;
+	   }
+		.eventDate{
+		   text-align: right;
+    	   margin-top: 20px;
+		}
+		.left{
+			float: left;
+		}
+		.clear{
+			clear: both;
+		}
+			
+    </style>
+</head>
+<body>
+    <div class="eventPanel">
+			<h3 class="eventHeader">Latest Events</h3>
+		<div class="clear"></div>
+    </div>
+    <script id="eventsBoard" type="text/x-handlebars-template">
+
+	<div class="eventsDiv left">
+		 <div class="eventName">
+			 <b>Event Name:</b>
+			 <label class="eventNameLabel"><a href="#" id="{{ id }}" class="eventDetails">{{ name.text }}</a></label>
+		 </div>
+		<div class="eventDate">
+			 <b>Event Date:</b>
+			<label class="eventDateabel">{{ changed }}</label>
+		 </div>
+		
+	</div>
+       
+    </script>
+	
+	 <script id="eventsDetailedInfo" type="text/x-handlebars-template">
+		 <div class="eventDesc">
+			 <b>Description</b>
+			 <div>{description.text}}</div>
+		 </div>
+    </script>
+
+	
+
+   
+
+    <script src="../cdn/js/underscore.js"></script>
+    <script src="../cdn/js/jquery.js"></script>
+	<script src="../cdn/js/handlebars.js" ></script>
+    <script src="../cdn/js/backbone.js"></script>
+    <script>
+		var EventModel = Backbone.Model.extend({ 
+			urlRoot:"events.json",
+				 defaults: {
+					name: 'html',
+					changed: '20-09-2015'
+				}
+        });
+		var EventView = Backbone.View.extend({
+		 
+			 initialize: function () {
+					this.render();
+			 },
+			events:{
+				'click .eventDetails':'eventsDesc'
+			},
+			eventsDesc:function(e){
+				alert($(e.currentTarget).attr("id"));
+				
+				
+				 var eventsModelObj = new EventModel();
+				var source = $("#eventsDetailedInfo").html();
+				var html = Handlebars.compile(source);
+				
+				var self = this;
+				 eventsModelObj.fetch({ 
+				        success:function(response){
+							var data = response.toJSON();
+							_.each(data,function(item,index){
+							     debugger;
+								
+								var result = html(item.description.text);
+								self.$el.append(result);
+								
+							})
+						   
+						}
+				 });
+				
+				
+		},
+			 render: function () {
+					
+//				    var source = $('#eventsBoard').html();
+//					var template = Handlebars.compile(source);
+//					var html = template(this.model.toJSON());
+//
+//					this.$el.html(html);
+				},
+			eventDetails : function(){
+				 var eventsModelObj = new EventModel();
+				var source = $("#eventsBoard").html();
+				var html = Handlebars.compile(source);
+				
+				var self = this;
+				 eventsModelObj.fetch({ 
+				        success:function(response){
+							var data = response.toJSON();
+							_.each(data,function(item,index){
+							     debugger;
+								
+								var result = html(item);
+								self.$el.append(result);
+								
+							})
+						   
+						}
+				 });
+			}
+        });
+
+        var eventsModelObj = new EventModel();
+        var eventViewObj = new EventView({ model: eventsModelObj });
+		
+        $('.eventPanel').html(eventViewObj.el);
+		eventViewObj.eventDetails();
+											 
+       
+    </script>
+	<script>
+//		$(function(){
+//	var a=$('.eventDateabel').text();
+//		a.split()
+//		a.substr(0,10);
+//			return a;
+//		})();
+	</script>
+
+</body>
+</html>
